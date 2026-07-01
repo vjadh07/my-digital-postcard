@@ -7,41 +7,57 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
+    <div class="grain" aria-hidden="true"></div>
+
     <header class="topbar">
-      <h1>my&#8209;digital&#8209;postcard</h1>
-      <p>shoot or upload a photo, pick a film, save it as a stamp</p>
+      <div class="brand">
+        <span class="mark" aria-hidden="true"></span>
+        <span class="word">my&#8209;digital&#8209;postcard</span>
+      </div>
+      <p class="tag">photo to film&#8209;graded stamp</p>
     </header>
 
-    <main>
-      <section class="stage">
-        <div class="viewport" id="viewport">
-          <video id="feed" playsinline muted></video>
-          <canvas id="gl"></canvas>
-          <div class="bezel"></div>
-          <div class="hint" id="hint">start the camera or drop a photo here</div>
+    <main class="workbench">
+      <section class="camera">
+        <div class="device">
+          <div class="deck" aria-hidden="true"></div>
+          <div class="viewport" id="viewport">
+            <video id="feed" playsinline muted></video>
+            <canvas id="gl"></canvas>
+            <div class="frameline" aria-hidden="true"></div>
+            <div class="hint" id="hint">start the camera, or drop a photo</div>
+            <div class="flash" id="flash" aria-hidden="true"></div>
+          </div>
+          <div class="readout">
+            <span class="k">film</span><span id="readout">kodak warm</span>
+          </div>
         </div>
 
-        <div class="films" id="films"></div>
+        <div class="filmstrip" id="films" role="group" aria-label="film looks"></div>
 
         <div class="controls">
           <button id="btnCamera" class="btn">Camera</button>
           <label class="btn" for="file">Upload</label>
           <input id="file" type="file" accept="image/*" hidden />
-          <button id="btnShutter" class="shutter" hidden aria-label="capture"></button>
           <button id="btnRetake" class="btn" hidden>Retake</button>
+          <button id="btnShutter" class="shutter" hidden aria-label="capture photo">
+            <span></span>
+          </button>
         </div>
       </section>
 
-      <aside class="stampPanel" id="stampPanel" hidden>
+      <aside class="output" id="stampPanel" hidden>
         <div class="stampPreview" id="stampPreview"></div>
-        <div class="fields">
-          <label>Title<input id="title" value="POSTCARD" maxlength="18" /></label>
-          <label>Number<input id="number" value="26" maxlength="4" /></label>
-          <label>Caption<input id="caption" placeholder="film and place" maxlength="28" /></label>
-          <label class="check"><input type="checkbox" id="dateToggle" checked />Date stamp</label>
-          <label class="check"><input type="checkbox" id="halftoneToggle" />Halftone print</label>
+        <form class="fields" onsubmit="return false">
+          <label class="field"><span>Title</span><input id="title" value="POSTCARD" maxlength="18" /></label>
+          <div class="row">
+            <label class="field"><span>Number</span><input id="number" value="26" maxlength="4" /></label>
+            <label class="field"><span>Caption</span><input id="caption" placeholder="film and place" maxlength="28" /></label>
+          </div>
+          <label class="toggle"><input type="checkbox" id="dateToggle" checked /><span>Date stamp</span></label>
+          <label class="toggle"><input type="checkbox" id="halftoneToggle" /><span>Halftone print</span></label>
           <button id="btnDownload" class="btn primary">Download stamp</button>
-        </div>
+        </form>
       </aside>
     </main>
 

@@ -88,6 +88,7 @@ async function useStill(src) {
 
 function capture() {
   if (!camera || !camera.ready) return;
+  flash();
   useStill(camera.capture());
   $('btnRetake').hidden = false;
 }
@@ -135,6 +136,7 @@ function buildStamp() {
 
 async function selectFilm(p) {
   preset = p;
+  setReadout(p.name);
   document
     .querySelectorAll('.film')
     .forEach((b) => b.classList.toggle('active', b.dataset.id === p.id));
@@ -145,13 +147,27 @@ async function selectFilm(p) {
   }
 }
 
+function setReadout(name) {
+  const r = $('readout');
+  if (r) r.textContent = name.toLowerCase();
+}
+
+function flash() {
+  const f = $('flash');
+  f.classList.remove('fire');
+  void f.offsetWidth; // restart the animation
+  f.classList.add('fire');
+}
+
 function buildFilms() {
   const box = $('films');
   PRESETS.forEach((p, i) => {
     const b = document.createElement('button');
     b.className = 'film' + (i === 0 ? ' active' : '');
     b.dataset.id = p.id;
-    b.textContent = p.name;
+    b.innerHTML = '<span class="sw"></span><span class="fl"></span>';
+    b.querySelector('.sw').style.background = p.swatch;
+    b.querySelector('.fl').textContent = p.name;
     b.onclick = () => selectFilm(p);
     box.appendChild(b);
   });
@@ -185,6 +201,7 @@ function main() {
     return;
   }
   buildFilms();
+  setReadout(preset.name);
   $('btnCamera').onclick = startCamera;
   $('file').onchange = (e) => {
     if (e.target.files[0]) onFile(e.target.files[0]);

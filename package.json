@@ -1,0 +1,11 @@
+{
+  "name": "my-digital-postcard",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Turn a photo into a film-graded postage stamp, right in the browser.",
+  "scripts": {
+    "start": "node tools/serve.mjs",
+    "luts": "node tools/gen-luts.mjs"
+  }
+}

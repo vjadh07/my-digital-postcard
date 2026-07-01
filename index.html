@@ -10,28 +10,28 @@
     <div class="grain" aria-hidden="true"></div>
 
     <header class="topbar">
-      <div class="brand">
-        <span class="mark" aria-hidden="true"></span>
-        <span class="word">my&#8209;digital&#8209;postcard</span>
-      </div>
-      <p class="tag">photo to film&#8209;graded stamp</p>
+      <span class="mark" aria-hidden="true"></span>
+      <span class="word">my&#8209;digital&#8209;postcard</span>
+      <span class="tag">shoot it. grade it. stamp it.</span>
     </header>
 
     <main class="workbench">
-      <section class="camera">
-        <div class="device">
-          <div class="deck" aria-hidden="true"></div>
-          <div class="viewport" id="viewport">
-            <video id="feed" playsinline muted></video>
-            <canvas id="gl"></canvas>
-            <div class="frameline" aria-hidden="true"></div>
-            <div class="hint" id="hint">start the camera, or drop a photo</div>
-            <div class="flash" id="flash" aria-hidden="true"></div>
-          </div>
-          <div class="readout">
-            <span class="k">film</span><span id="readout">kodak warm</span>
-          </div>
+      <section class="cam">
+        <div class="cam-top">
+          <span class="cam-name">DIGI&#8209;POSTCARD</span>
+          <span class="grille" aria-hidden="true"></span>
+          <span class="cam-model">W&#8209;50</span>
         </div>
+
+        <div class="screen" id="viewport">
+          <div class="bars" aria-hidden="true"></div>
+          <video id="feed" playsinline muted></video>
+          <canvas id="gl"></canvas>
+          <div class="hint" id="hint">press the button to shoot,<br />or drop a photo here</div>
+          <div class="flash" id="flash" aria-hidden="true"></div>
+        </div>
+
+        <div class="readout"><span class="k">FILM</span><span id="readout">kodak warm</span></div>
 
         <div class="filmstrip" id="films" role="group" aria-label="film looks"></div>
 
@@ -51,11 +51,13 @@
         <form class="fields" onsubmit="return false">
           <label class="field"><span>Title</span><input id="title" value="POSTCARD" maxlength="18" /></label>
           <div class="row">
-            <label class="field"><span>Number</span><input id="number" value="26" maxlength="4" /></label>
+            <label class="field"><span>No.</span><input id="number" value="26" maxlength="4" /></label>
             <label class="field"><span>Caption</span><input id="caption" placeholder="film and place" maxlength="28" /></label>
           </div>
-          <label class="toggle"><input type="checkbox" id="dateToggle" checked /><span>Date stamp</span></label>
-          <label class="toggle"><input type="checkbox" id="halftoneToggle" /><span>Halftone print</span></label>
+          <div class="checks">
+            <label class="toggle"><input type="checkbox" id="dateToggle" checked /><span>Date stamp</span></label>
+            <label class="toggle"><input type="checkbox" id="halftoneToggle" /><span>Halftone print</span></label>
+          </div>
           <button id="btnDownload" class="btn primary">Download stamp</button>
         </form>
       </aside>
